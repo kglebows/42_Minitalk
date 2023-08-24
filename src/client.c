@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:26:44 by kglebows          #+#    #+#             */
-/*   Updated: 2023/08/24 15:47:02 by kglebows         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:28:39 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(int argn, char *argc[])
 	server_pid = ft_atoi(argc[1]);
 	ft_printf("server PID: %d", server_pid);
 	kill(server_pid, SIGUSR2);
+	usleep(100);
 	kill(server_pid, SIGUSR1);
 	// kill(server_pid, SIGUSR2);
 	// kill(server_pid, SIGUSR2);
