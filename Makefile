@@ -6,12 +6,12 @@
 #    By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 18:20:23 by kglebows          #+#    #+#              #
-#    Updated: 2023/08/18 16:45:44 by kglebows         ###   ########.fr        #
+#    Updated: 2023/08/24 13:35:43 by kglebows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-NAME_BONUS = checker
+NAME1 = server
+NAME2 = client
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
@@ -21,22 +21,14 @@ LIBFTDIR = src/libft
 OBJDIR = ./bin
 SRCDIR = ./src
 
-SRC = 			push_swap.c
-SRC_BONUS = 	checker.c
-SRC_GNL = 		gnl/get_next_line_utils.c gnl/get_next_line.c
+SRC1 = server.c
+SRC2 = client.c
 
-SRC_INI = 		ini/ini.c ini/utils.c
-SRC_SORT = 		sort/distance.c sort/phase1.c sort/phase2.c sort/solve.c \
-				sort/sort.c sort/utils.c
-SRC_STACK = 	stack/push.c stack/rotate.c stack/rrotate.c stack/swap.c \
-				stack/stack.c
+SRCS1 = $(SRC1)
+OBJS1 = $(SRCS1:%.c=$(OBJDIR)/%.o)
 
-
-SRCS = $(SRC) $(SRC_INI) $(SRC_SORT) $(SRC_STACK)
-OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
-
-SRCS_BONUS = $(SRC_BONUS) $(SRC_INI) $(SRC_STACK) $(SRC_GNL)
-OBJS_BONUS = $(SRCS_BONUS:%.c=$(OBJDIR)/%.o)
+SRCS2 = $(SRC2)
+OBJS2 = $(SRCS2:%.c=$(OBJDIR)/%.o)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(dir $@)
@@ -47,7 +39,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 		echo "$$OUTPUT" && echo "\033[0;31m$< KO!\033[0m" && exit 1; \
 	fi
 
-all: makelibft $(NAME)
+all: makelibft $(NAME1) $(NAME2)
 
 makelibft:
 	@if [ ! -f "$(LIBFTNAME)" ]; then \
@@ -57,13 +49,11 @@ makelibft:
 		fi; \
 	fi
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(OBJDIR)/libft -lft
+$(NAME1): $(OBJS1)
+	@$(CC) $(CFLAGS) -o $(NAME1) $(OBJS1) -L$(OBJDIR)/libft -lft
 
-bonus: makelibft $(NAME_BONUS)
-
-$(NAME_BONUS): $(OBJS_BONUS)
-	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) -L$(OBJDIR)/libft -lft
+$(NAME2): $(OBJS2)
+	@$(CC) $(CFLAGS) -o $(NAME2) $(OBJS2) -L$(OBJDIR)/libft -lft
 
 clean-empty-dirs:
 	@if [ -d $(OBJDIR) ]; then find $(OBJDIR) -type d -empty -exec rmdir {} +; fi
@@ -101,18 +91,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean norm re bonus
-
-#tester
-TESTER_GET  =   https://raw.githubusercontent.com/lorenuars19/push_swap_tester/main/push_swap_tester.pl
-TESTER      =   ./ps_tester.pl
-
-$(TESTER):
-	curl $(TESTER_GET) -o $(TESTER)
-3: $(NAME) $(TESTER)
-	perl $(TESTER) 3 100
-5: $(NAME) $(TESTER)
-	perl $(TESTER) 5 100
-100: $(NAME) $(TESTER)
-	perl $(TESTER) 100 100
-500: $(NAME) $(TESTER)
-	perl $(TESTER) 500 100

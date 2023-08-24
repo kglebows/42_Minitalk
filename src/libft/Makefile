@@ -6,7 +6,7 @@
 #    By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 17:46:30 by kglebows          #+#    #+#              #
-#    Updated: 2023/08/18 15:20:21 by kglebows         ###   ########.fr        #
+#    Updated: 2023/08/24 13:04:20 by kglebows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c 
 	ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
 	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c \
 	ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
+	ft_printf.c ft_printf_c.c ft_printf_n.c ft_printf_p.c ft_printf_s.c \
+	ft_printf_x.c ft_printf_u.c
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
 $(OBJDIR)/%.o: %.c

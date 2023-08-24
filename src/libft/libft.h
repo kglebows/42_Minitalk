@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:44:12 by kglebows          #+#    #+#             */
-/*   Updated: 2023/08/12 14:15:38 by kglebows         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:03:22 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <stdlib.h>
+
+# include <stdarg.h>
+
+int	ft_printf(const char *str, ...);
+int	ft_printf_c(char c);
+int	ft_printf_s(char *str);
+int	ft_printf_n(int n);
+int	ft_printf_x(unsigned long int n, int flag);
+int	ft_printf_p(unsigned long int ptr);
+int	ft_printf_u(unsigned int n);
+
 
 typedef struct s_list
 {

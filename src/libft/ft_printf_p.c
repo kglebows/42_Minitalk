@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_printf_p.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 13:26:44 by kglebows          #+#    #+#             */
-/*   Updated: 2023/08/24 15:47:02 by kglebows         ###   ########.fr       */
+/*   Created: 2023/05/02 17:19:58 by kglebows          #+#    #+#             */
+/*   Updated: 2023/08/24 13:07:02 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signal.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-int main(int argn, char *argc[])
+int	ft_printf_p(unsigned long int ptr)
 {
-	int		server_pid;
+	int	printed;
 
-	if (argn < 2)
-		return (0);
-	server_pid = ft_atoi(argc[1]);
-	ft_printf("server PID: %d", server_pid);
-	kill(server_pid, SIGUSR2);
-	kill(server_pid, SIGUSR1);
-	// kill(server_pid, SIGUSR2);
-	// kill(server_pid, SIGUSR2);
-	return (0);
+	write(1, "0x", 2);
+	printed = ft_printf_x(ptr, 0);
+	if (printed == -1)
+		return (-1);
+	else
+		printed += 2;
+	return (printed);
 }
