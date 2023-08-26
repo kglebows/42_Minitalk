@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:12:46 by kglebows          #+#    #+#             */
-/*   Updated: 2023/08/25 22:03:21 by kglebows         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:41:06 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,21 @@
 
 void act(int signo, siginfo_t *siginfo, void *context)
 {
-	int					server_pid;
 	static unsigned char			c = 0;
-	static int			i = 0;
+	static int						i = 0;
 
 	(void)context;
-	server_pid = siginfo->si_pid;
-	if (signo == SIGUSR1)
-	{
-		ft_printf("0");
-	}
-	if (signo == SIGUSR2)
-	{
-		ft_printf("1");
-	}
 	c |= (signo == SIGUSR2);
 	if (++i != 8)
-	{
 		c <<= 1;
-	}
 	else
 	{
+		if (!c)
+			kill(siginfo->si_pid, SIGUSR2);
 		ft_printf("%c", c);
-		ft_putchar_fd(c, 1);
 		i = 0;
 		c = 0;
 	}
-	
 }
 
 int main(void)
