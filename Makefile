@@ -6,7 +6,7 @@
 #    By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 18:20:23 by kglebows          #+#    #+#              #
-#    Updated: 2023/08/24 13:35:43 by kglebows         ###   ########.fr        #
+#    Updated: 2023/08/29 16:52:07 by kglebows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,12 +59,12 @@ clean-empty-dirs:
 	@if [ -d $(OBJDIR) ]; then find $(OBJDIR) -type d -empty -exec rmdir {} +; fi
 
 clean: 
-	@for obj in $(OBJS); do \
+	@for obj in $(OBJS1); do \
 		if [ -f "$$obj" ]; then \
 			rm -f $$obj && echo "\033[0;33m$$obj deleted\033[0m"; \
 		fi; \
 	done
-	@for obj_bonus in $(OBJS_BONUS); do \
+	@for obj_bonus in $(OBJS2); do \
 		if [ -f "$$obj_bonus" ]; then \
 			rm -f $$obj_bonus && echo "\033[0;33m$$obj_bonus deleted\033[0m"; \
 		fi; \
@@ -76,11 +76,11 @@ clean:
 	@$(MAKE) clean-empty-dirs
 
 fclean: clean
-	@if [ -f "$(NAME)" ]; then \
-		rm -f $(NAME) && echo "\033[0;33m$(NAME) deleted\033[0m"; \
+	@if [ -f "$(NAME1)" ]; then \
+		rm -f $(NAME1) && echo "\033[0;33m$(NAME1) deleted\033[0m"; \
 	fi
-	@if [ -f "$(NAME_BONUS)" ]; then \
-		rm -f $(NAME_BONUS) && echo "\033[0;33m$(NAME_BONUS) deleted\033[0m"; \
+	@if [ -f "$(NAME2)" ]; then \
+		rm -f $(NAME2) && echo "\033[0;33m$(NAME2) deleted\033[0m"; \
 	fi
 	@OUTPUT=$$(make -C $(LIBFTDIR) fclean --no-print-directory 2>&1); \
 	if echo "$$OUTPUT" | grep -E "deleted" > /dev/null; then \
