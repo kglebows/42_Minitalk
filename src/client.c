@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 13:26:44 by kglebows          #+#    #+#             */
-/*   Updated: 2023/08/30 01:09:20 by kglebows         ###   ########.fr       */
+/*   Updated: 2023/08/30 01:24:44 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,7 @@ int	main(int argn, char *argc[])
 	send_chunk(server_pid, 0);
 	return (0);
 }
+
+/*
+"	༼ つ ◕_◕ ༽つ c🍪🍪kies	"
+*/
